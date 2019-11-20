@@ -5,6 +5,9 @@ https://stackoverflow.com/questions/38921414/mongodb-what-are-the-default-user-a
 https://docs.mongodb.com/manual/reference/method/db.getUsers/
 http://www.dba86.com/docs/mongo/3.0/tutorial/change-user-privileges.html
 
+
+Login: 
+mongo --port 27017 -u "User" -p "abc123" --authenticationDatabase "admin"
 show dbs;
 use <dbname>
 show collections;
@@ -14,5 +17,17 @@ db.getUsers();
 ##create a normal user and grating access to <DBs>
 db.createUser ( { user: "tester", pwd: "test123", roles: [ {role: "readWrite", db: "local" }, { role: "read" , db: "admin" } ] } )
 db.getUsers();
+
+###if you want to give free access to create databases, read, write databases, etc, but you don't want to create a root role
+use admin
+db.createUser(
+  {
+    user: "myUserAdmin",
+    pwd: "abc123",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, 
+             { role: "dbAdminAnyDatabase", db: "admin" }, 
+             { role: "readWriteAnyDatabase", db: "admin" } ]
+  }
+)
 
 
