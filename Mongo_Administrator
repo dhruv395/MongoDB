@@ -1,0 +1,18 @@
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+https://docs.mongodb.com/manual/tutorial/enable-authentication/
+https://docs.mongodb.com/manual/crud/
+https://stackoverflow.com/questions/38921414/mongodb-what-are-the-default-user-and-password
+https://docs.mongodb.com/manual/reference/method/db.getUsers/
+http://www.dba86.com/docs/mongo/3.0/tutorial/change-user-privileges.html
+
+show dbs;
+use <dbname>
+show collections;
+##to create a admin user
+db.createUser( { user: "admin", pwd: "admin123", roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ] } )
+db.getUsers();
+##create a normal user and grating access to <DBs>
+db.createUser ( { user: "tester", pwd: "test123", roles: [ {role: "readWrite", db: "local" }, { role: "read" , db: "admin" } ] } )
+db.getUsers();
+
+
