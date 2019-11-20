@@ -1,0 +1,17 @@
+Open the MongoDB configuration file using sudo (sudo vi mongodb.conf).
+The file can be found in /etc/mongod.conf folder.
+Comment 
+
+#security:
+#    "authorization: enabled".
+    
+Stop the MongoDB service (sudo service mongod stop)
+Start the MongoDB service (sudo service mongod start)
+Then create "root" superuser using the below command:
+
+use admin
+
+db.createUser({user:"admin",pwd:"password",roles:[{role:"root",db:"admin"}]});
+For reference https://docs.mongodb.com/manual/reference/built-in-roles/#superuser-roles
+
+Go back and uncomment "auth=true". Stop and Start/Restart the mongodb service.
